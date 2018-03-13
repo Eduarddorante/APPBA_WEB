@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="{% static 'plugins/bootstrap/bootstrap.css'%} " rel="stylesheet" />
+    <link href="{% static 'font-awesome/css/font-awesome.css'%} " rel="stylesheet" />
+    <link href="{% static 'css/style.css'%} " rel="stylesheet" />
+    <link href="{% static 'css/main-style.css'%} " rel="stylesheet" />
+ <body>
+
+</body>
+</html>
+
+<div class="form">
+  <form action="" method="post" >{% csrf_token %} 
+  <h3 align="center" style="color: black;">¿Desea eliminar el registro de {{ object.get_full_name }}?</h3>
+  <div align="center">
+  <button class="btn btn-danger" type="submit"> Si, eliminar </button>
+  <a href="/listado_secretarias/" class="btn btn-default">Volver</a>
+  </form>
+</div>
+</div>

@@ -1,0 +1,101 @@
+{% extends 'base_repor.html' %}
+{% load staticfiles %}
+<div class="reporte">
+  
+
+<title>Certificados</title>
+
+{% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'csss/css/font-awesome.min.css' %}">
+  <link href="{% static 'csss/css/bootstrap.css' %}" rel="stylesheet">
+
+{% block content %}
+<div class="pirint">
+  <a href="" onclick="window.print()" class="btn btn-success btn-fab  print" style="color: #fff;
+
+      margin-left: 908px;
+      background-color: #9E9E9E;
+      border-color: #9E9E9E;" ><span class="fa fa-print"></a></span>
+</div>
+
+<section>
+<div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" style="margin-top: -66px;">
+<div class="widget">
+
+<br><br><br><br><br><br><label style=" margin-left: 426px;
+"></label><br><br>
+<center style="color: #000;margin-top: -21px;font-size: 30px;margin-left: 20px; "Arial";" >Costancia De Permiso</center></label><br><br>
+<h4 style="text-justify: text-align: left"><blockquote>EN (LA) DIRECION de la Escuela Bellas Artes, hace constar que el  (la) Ciudadano(a):<strong class="bold">{{ request.user.get_full_name }}</strong>
+
+
+</nav></blockquote><h4></section>
+      <p style="text-align: center;
+        margin-left: -684px;
+        margin-top: 59px;">
+        Apellidos y Nombres:  <strong class="bold">{{ request.user.get_full_name }}</strong>
+    </p>
+      <p style="text-align: center;
+          margin-left: -676px;
+          margin-top: -9px;">
+          Cédula de Identidad N°: <strong class="bold">{{ request.user.ci }}</strong>
+      </p>
+
+
+<br><br><br>
+
+
+<p style="text-align: center;
+    margin-left: -461px;
+    margin-top: 125px;">
+  _____________________________________________
+</p>
+<p style="text-align: center;
+  margin-left: -489px;
+  margin-top: -9px;
+  font-size: 9px;">
+  Director (a) del Bellas Artes:
+</p>
+
+<p style="text-align: center;
+  margin-top: -46px;
+  margin-left: 603px;
+">
+  _____________________________________________
+</p>
+<p style="text-align: center;
+  margin-left: 636px;
+  margin-top: -9px;
+  font-size: 9px;">
+  Director (a) de Escuela
+</p>
+
+
+
+<p style="text-align: center;
+  margin-left: -612px;
+  margin-top: 118px;
+  font-size: 12px;">
+  SELLO DEL BELLAS ARTES
+</p>
+
+
+
+
+</br></br></br></br></br>
+  <center><div class="col-xs-12 text-right"><a class="btn btn-primary" href="javascript:window.print();" target="_blank">
+    <i class="fa fa-print"></i> Imprimir</a></div></center>
+
+
+
+
+
+<script>
+var $ = require('jquery');
+
+const $print = $('.print');
+
+$print.click(function () {
+  window.print();
+})
+</script>
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bellas Artes</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'http://fonts.googleapis.com/css?family=Roboto:400,100,300,500'%}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/form-elements.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'iziToast/css/iziToast.min.css' %}">
+    <link href="{% static 'css/loginIMG.css'%}" rel="stylesheet" />
+
+    <HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// 
+    <!--[if lt IE 9]>
+        <script src="{% static 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'%}"></script>
+        <script src="{% static 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'%}"></script>
+</head>
+
+<body class="body-Login-back">
+<section class="login-content">
+  <div class="login-box">
+    <form class="login-form" method="POST">{% csrf_token %}{{form.as_tb}}
+      <div class="row margin">
+        <div class="input-field col s12">
+          <i class="mdi-social-person-outline prefix"></i>
+
+    <!-- Top content -->
+    <div class="top-content">
+      
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1><strong>Bienvenidos</strong></h1>
+                        <div class="description">
+                          <p>
+                            Este sitio es exclusivo, solo para el personal administrativo de la institución gracias.
+                          </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                      <div class="form-top">
+                        <div class="form-top-left">
+                          <center><strong><h3>INTRANET</h3></strong></center>
+
+                 <p>Ingrese su usuario y contraseña para iniciar sesión, todo los campos son necesarios para poder acceder a nuestra sistema:</p>
+                        </div>
+                        <div class="form-top-right">
+                          <i class="fa fa-lock"></i>
+                        </div>
+                        </div>
+                        <div class="form-bottom">
+                      <form role="form" action="" method="post" class="login-form">
+                       <div class="input-field col s12">
+                  <i class="mdi-social-person-outline prefix"></i>
+                  
+                  <label data-error="wrong" class="center-align"> &nbsp;Usuario</label>
+                   <input autofocus="" id="id_username" placeholder="Ingrese Cedula" maxlength="254" class="form-control" name="username" type="text" required="">
+              
+
+                  <i class="mdi-action-lock-outline prefix"></i>
+                  <label class="" data-error="wrong"> &nbsp;Contraseña</label>
+                <div class="input-field col s12" type="password" placeholder="Password">
+                 <input id="id_password" placeholder="Ingrese Contraseña" name="password" class="form-control" type="password" required="">
+                </div>
+                <div class="form-group btn-container">
+                <br>
+        <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesión!</button>          
+    </form>
+    {% if form.errors %}
+    <label><h5 align="center">Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.</label>
+    {% endif %}
+  </div>
+</section>
+</body>
+
+<!-- Javascript -->
+<script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'assets/js/jquery.backstretch.min.js'%}"></script>
+<script src="{% static 'assets/js/scripts.js'%}"></script>
+<script src="{% static 'assets/js/placeholder.js'%}"></script>
+<script src="{% static 'js/login.js' %}"></script>
+<script src="{% static 'iziToast/js/iziToast.js' %}"></script>
+{% if message != "" %}
+  <script> mal('{{ message }}') </script> 
+{% endif %}
+
+
+</html>

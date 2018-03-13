@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+{% block extrahead%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>{%block title%}{% endblock title%}</title> 
+
+  <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ie10-viewport-bug-workaround.css' %}">
+  <link rel="stylesheet" href="{% static 'css/starter-template.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/all.css' %}">
+  <script type="text/javascript" src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+  <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css'%}">
+  <link href="{%static 'css/business-casual.css'%}" rel="stylesheet">
+
+
+  {% block css %} {% endblock %}
+
+</head>
+
+<body>
+ <div class="brand">Bienvenidos</div>
+  <div class="address-bar">Centro De Bellas Artes "Doña Amanda Muñoz De Urriola"</div>
+
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+         <li>
+           <li><a href="/">Inicio</a><li>
+            
+            <li><a href="/Informacion/">Nuestra Sede</a><li>
+              
+              <li><a href="/calendario/">Acticidades</a></li>
+
+              <li><a href="/login/">Iniciar Sesión</a></li>
+            </li>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+
+  </nav>
+
+
+
+{% block content%}
+{% endblock content %}
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js'%}"><\/script>')</script>
+<script type="text/javascript" src="{% static 'js/holder.min.js' %}" ></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" ></script>
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/ie10-viewport-bug-workaround.js'%}"></script>
+<script type='text/javascript' src="{% static 'js/moment.js' %}"></script>
+<script src="{%static 'js/jquery.js'%}"></script>
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/dataTables.bootstrap.min.js'%}"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+{% block javascript %}{% endblock %}
+
+{% block footer %}
+
+   <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-13 text-center">
+                  <h2 class="intro-text text-center"><strong>Desarroladores:</strong>
+                        Dorante Eduard, Gomez Maryori, Manuel Desantiago
+                    </h2>
+                    <p>2017 &copy; 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock footer %}
+
+
+
+
+</html>

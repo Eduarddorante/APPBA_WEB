@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="Topbanner">
+  <h1 class="Title">Reporte / {{ request.user.get_full_name }} / Postulación</h1>
+  <span class="icon-print print"></span>
+</div>
+
+
+<div class="Page">
+
+  <h3 class="Page-diruser">
+    <strog>CIUDADANO(A):</strog> <br><br>
+
+    <span class="Page-diruser-data">
+      {{ receiver.name }} <br>
+      {{ receiver.business }}
+    </span>
+
+  </h3>
+
+  <br><br>
+
+  <h2 class="Page-title">POSTULACIÓN</h2> <br> <br>
+  <p class="content">
+    El suscrito <strong class="bold">{{ coordinador.get_full_name }}</strong> titular de la cedula de identidad
+    <strong class="bold">{{ coordinador.ci }}</strong>, en mi condición de Coordinador de Organización y Técnica
+    Electoral del Partido Socialista Unido de Venezuela (PSUV) en el
+    Municipio Guanare, hago constar, que el ciudadano(a) <strong class="bold">{{ request.user.get_full_name }}</strong>,
+    Titular de la cedula de identidad <strong class="bold">{{ request.user.ci }}</strong>, es militante de nuestro partido en esta
+    entidad federal, hago propicio laocasión para solicitarle del camarada antes mencionado
+    sea tomado encuenta. Avalamos su contribución absoluta en el proceso revolucionario
+    socialista encomendado por nuestro comandante HUGO RAFAEL CHÁVEZ FÍRAS
+    liderado por nuestro actual presidente NICOLAS MADURO.
+  </p>
+
+    <br>
+    <br>
+
+    <p class="content-pOne">
+      Sin más a que referirme me remito, reiterándole éxito a la gestión encomendada y agradeciendo
+      la receptividad prestada, se suscribe a sus gratas órdenes.
+    </p>
+
+    <br>
+
+    <p class="content-pTwo">
+      Constancia que se expide a petición de la parte interesada, en Guanare, a los 16 días del mes de febrero del año 2017.
+    </p>
+
+    <br>
+    <br>
+
+    <p class="content-pTree">
+      <strong class="bold">ATENTAMENTE;</strong> <br><br>
+      <strong class="bold">_____________________________</strong> <br>
+      {{ coordinador.get_full_name }} <br>
+      COORDINADOR DE ORGANIZACIÓN Y TECNICA ELECTORAL <br>
+      PSUV GUANARE TLF: {{ coordinador.tlf }}
+    </p>
+
+  </p>
+
+  <br>
+  <br>
+  <br>
+
+
+  <div class="code">{{ request.user.id }}</div>
+
+</div>
+{% endblock content %}

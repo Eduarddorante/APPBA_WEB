@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Registro de actividades{% endblock %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Sistema De Registro <small>Actividades</small></h1>
+    </div>
+</div>
+<div class="container-fluid"  style="margin: 50px 0;">
+  <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-3">
+          <img src="{% static 'assets/img/category.png'%}" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+          Bienvenido a la sección para registrar nuevas actividades al sistema, debes de seleccionar los datos en el siguiente formulario para registrar una actividad.
+        
+      </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container-flat-form">
+      <div class="title-flat-form title-flat-blue">Crear Actividad</div>
+      <form method="POST" id="form" role="form">{% csrf_token %}
+          <div class="row">
+            <div class="container-fluid">
+                <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+              
+              <!-- Formulario Actividades -->
+              <div class="col-xs-12 col-sm-8 col-sm-offset-2 tab-pane fade active in" id="Actividad">
+                <br>
+                <div class="material-control tooltips-general">                    
+                  <div class="FormGroup col-md-6">
+                    <!-- Actividad -->
+                    <div class="Actividad">
+                      <div class="title">Nombre De La Actividad</div>
+                      {{ form.nombr_acti | add_class:'form-control' | attr:"autocomplete:off" | attr:"placeholder:Ingrese Nombre De La Actividad"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Actividad }}</span>
+                  </div>
+
+                  <div class="FormGroup col-md-6">
+                    <!-- descripcion De la Actividad -->
+                    <div class="Descripcion">
+                      <div class="title">Descripcion De La Actividad</div>
+                      {{ form.descripcio | add_class:'form-control'|attr:"rows:4"|attr:"style: resize: none;" | attr:'placeholder:Descripcion De La Actividad'|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.descripcion }}</span>
+                  </div>
+                  
+                  <div class="FormGroup col-md-6">
+                    <!-- Fecha De Nacimiento -->
+                    <div class="Inicio">
+                    <div class="title">Fecha De Inicio</div>
+                     {{form.fecha_inic |add_class:'form-control'|attr:"placeholder:Inicio de la actividad"| attr:"type:date" |add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.form.fecha_inic }}</span>
+                  </div>
+
+                  <div class="FormGroup col-md-6">
+                    <!-- Fecha De Nacimiento -->
+                    <div class="Fin">
+                    <div class="title">Fecha De Fin</div>
+                      {{form.fecha_fina |add_class:'form-control'|attr:"placeholder:Fin de la actividad"| attr:"type:date" |add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.fecha_fina }}</span>
+                  </div>
+                  <div class="FormGroup col-md-6">
+                    <!-- status De la Actividad -->
+                  <div class="Status">
+                    <div class="title">Estatus De La Actvidad</div>
+                 {{ form.status1|attr:'type:checkbox' |attr:"placeholder:status"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.status }}</span>
+                  </divstatus></div>
+                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                <button type="submit" class="btn btn-primary" value="Guardar"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+              </div>
+            </div>
+         </div>
+     </form>
+  </div>
+</div>
+</div>
+
+{% endblock %}

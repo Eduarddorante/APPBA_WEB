@@ -1,0 +1,25 @@
+{
+  "name": "intranet_psuv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "styles:pro": "stylus --include-css -u nib -c -o static/css/ static/css/stylus/main.styl",
+    "styles:dev": "stylus --include-css -u nib -w -c -o static/css/ static/css/stylus/main.styl",
+    "mkdir": "mkdir -p static/scripts/bundle",
+    "build:dev": "browserify --debug static/scripts/app.js > static/scripts/bundle/bundle.js",
+    "build:pro": "browserify static/scripts/app.js > static/scripts/bundle/bundle.js",
+    "start": "npm run mkdir && npm run styles:pro && npm run build:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "js-cookie": "^2.1.3",
+    "sweetalert": "^1.1.3"
+  },
+  "devDependencies": {
+    "browserify": "^14.0.0"
+  }
+}

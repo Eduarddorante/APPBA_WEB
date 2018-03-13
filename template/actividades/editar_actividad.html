@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Editar De Actividad</h1>
+    </div>
+</div>
+<div class="container-fluid"  style="margin: 50px 0;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <img src="{% static 'assets/img/calendar_book.png' %}" alt="calendar" class="img-responsive center-box" style="max-width: 110px;"> <br><br>
+            </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+            Bienvenido a esta sección, aquí puedes editar los campos de una actividad</div>
+    </div>
+
+        <form method="POST">{% csrf_token %}
+          <table>
+
+                  <div class="group-material col-md-6">
+                    <!-- Actividad -->
+                    <div class="Actividad">
+                      {{form.Actividad |add_class:'form-control'|attr:"placeholder:Actividad Realizar"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Actividad }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- descripcion De la Actividad -->
+                    <div class="Descripcion">
+                      {{form.descripcion |add_class:'form-control'|attr:"placeholder:Descripcion De La Actividad"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.descripcion }}</span>
+                  </div>
+                  
+                  <div class="group-material col-md-6">
+                    <!-- Status de la actividad -->
+                    <div class="Status">
+                      {{form.status |add_class:'form-control'|attr:"placeholder:Status"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.status }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Fecha De Nacimiento -->
+                    <div class="Fecha">
+                      {{form.Fecha |add_class:'form-control'|attr:"placeholder:Fecha de la actividad"| attr:"type:date" |add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Fecha }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- catedra De la Actividad -->
+                    <div class="Catedra">
+                 {{form.catedra     |add_class:'form-control'|attr:"placeholder:catedra"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.catedra }}</span>
+
+                  </div>
+            <div align="center">
+                
+                <button class="btn btn-primary btn-lg" value="Guardar">Actualizar</button>
+            </div>
+          </table>
+        </form>
+        </div>
+</body>
+
+</html>
+{% endblock %}

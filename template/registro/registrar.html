@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block title %}Registro{% endblock %}
+{% block content %}    
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Sistema De Registro <small>Alumnos</small></h1>
+    </div>
+</div>
+<div class="container-fluid"  style="margin: 50px 0;">
+  <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-3">
+          <img src="{% static 'assets/img/section.png'%}" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+          Bienvenido a la sección para registrar nuevos alumnos al sistema, debes de seleccionar los datos en el siguiente formulario para registrar un alumno.
+      </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container-flat-form">
+      <div class="title-flat-form title-flat-blue">Guardar datos del Alumno</div>
+      <form method="POST" id="form" role="form">{% csrf_token %}
+          <div class="row">
+            <div class="container-fluid">
+                <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
+                  <li role="presentation" class="active"><a data-toggle="tab" href="#Alumno">Alumno</a></li>
+                  <li role="presentation"><a data-toggle="tab" href="#Representante">Representante</a></li>
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+              
+              <!-- Formulario Alumno -->
+              <div class="col-xs-12 col-sm-8 col-sm-offset-2 tab-pane fade active in" id="Alumno">
+                <br>
+                <div class="material-control tooltips-general">                    
+                  <div class="group-material col-md-6">
+                    <!-- Cedula Del Alumno -->
+                    <div class="cedula_alumno">
+                      {{form.cedula_alumno |add_class:'form-control'|attr:"placeholder:Cedula Del Alumno"|add_class:'material-control tooltips-general'|attr:'autocomplete:off'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.cedula_alumno }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Nombre Del Alumno -->
+                    <div class="Nombre">
+                      {{form.Nombre |add_class:'form-control'|attr:"placeholder:Nombre Del Alumno"|add_class:'material-control tooltips-general'|attr:'autocomplete:off'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Nombre }}</span>
+                  </div>
+                  
+                  <div class="group-material col-md-6">
+                    <!-- Apellido Del Alumno -->
+                    <div class="Apellido">
+                      {{form.Apellido |add_class:'form-control'|attr:"placeholder:Apellido Del Alumno"|add_class:'material-control tooltips-general'|attr:'autocomplete:off'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Apellido }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Fecha De Nacimiento -->
+                    <div class="Fecha_nacimiento">
+                      {{form.Fecha_nacimiento |add_class:'form-control'|attr:"placeholder:Fecha De Nacimiento"| attr:"type:date" |add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Fecha_nacimiento }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Sexo Del Alumno -->
+                    <div class="Sexo">
+                      {{form.Sexo |add_class:'form-control'|attr:"placeholder:Sexo"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Sexo }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Direccion -->
+                    <div class="Direccion_habitacion">
+                      {{form.Direccion_habitacion |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Direccion"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Direccion_habitacion }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Numero De Telefono -->
+                    <div class="Telefono">
+                      {{form.Telefono |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Numero Telefonico"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Telefono }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Numero Celular -->
+                    <div class="Celular">
+                      {{form.Celular |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Numero Celularform"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Celular }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Nivel Educativo -->
+                    <div class="Nivel_instruccion">
+                      {{form.Nivel_instruccion |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Nivel Educativo"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Nivel_instruccion }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Email -->
+                    <div class="Email">
+                      {{form.Email |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Email"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Email }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Institucion Cursante -->
+                    <div class="Institucion_cursante">
+                      {{form.Institucion_cursante |add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Institucion Cursante'|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Institucion_cursante }}</span>
+                  </div>
+                  
+                  <div class="group-material col-md-6">
+                    <!-- Cursos Realizados -->
+                    <div class="Curso_realizar">
+                      {{form.Curso_realizar |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Curso A Realizar"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Curso_realizar }}</span>
+                  </div>
+                      {% if request.user.is_secretaria_artes %}
+                        {{ form.Artes_Plasticas|attr:'checked:True'|attr:'hidden:True' }}
+                      {% elif request.user.is_secretaria_danza %}
+                        {{ form.Danza|attr:'checked:True'|attr:'hidden:True' }}
+                      {% elif request.user.is_secretaria_musica %}
+                        {{ form.Musica|attr:'checked:True'|attr:'hidden:True' }}
+                      {% elif request.user.is_secretaria_teatro %}
+                        {{ form.Teatro|attr:'checked:True'|attr:'hidden:True' }}
+                      {% endif %}
+
+                  <div class="group-material col-md-6">
+                    <!-- Otras Actividades -->
+                    <div class="Cursa_otra_actividad">
+                      {{form.Cursa_otra_actividad |attr:'autocomplete:off'|add_class:'form-control'|attr:"placeholder:Cursa Otra Actividad"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Cursa_otra_actividad }}</span>
+                  </div>
+                  <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                  <button type="submit" class="btn btn-primary" value="Guardar"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                </div>
+              </div>
+
+              <!-- Formulario Representante -->
+
+              <div class="col-xs-12 col-sm-8 col-sm-offset-2 tab-pane fade" id="Representante">
+                <br>
+                  <div class="group-material col-md-6">
+                    <!-- Cedula Del Representante -->
+                  
+                    <div class="cedula">
+                     {{form.cedula_representante |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Cedula Del Representante"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.cedula }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Nombre Del Representante -->
+                    <div class="Nombre_Repre">
+                      {{form.Nombre_Repre |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Nombre Del Representante"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Nombre_Repre }}</span>
+                  </div>
+                  
+                  <div class="group-material col-md-6">
+                    <!-- Apellido Del Representante -->
+                    <div class="Apellid_Repre">
+                      {{form.Apellid_Repre |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Apellido Del Representante"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Apellid_Repre }}</span>
+                  </div>
+
+                  <div class="group-material col-md-6">
+                    <!-- Telefono Del Representante -->
+                    <div class="Telefono_repre">
+                      {{form.Telefono_repre |add_class:'form-control'|attr:'autocomplete:off'|attr:"placeholder:Numero Telefonico"|add_class:'material-control tooltips-general'|attr:'validate:LETRAS,SIMBOLOS,FLECHAS,ENTER,ESPACIO'}}
+                    </div>
+                    <span class="help-block text-danger">{{ form.errors.Telefono_repre }}</span>
+                  </div>
+
+                  {% if alumno.form %}
+                    <div class="alert">
+                      <div class="alert alert-dismissible alert-danger">
+                        <button class="close" type="button" data-dismiss="alert">×</button>
+                        <h4>Alerta!</h4>
+                        <p>
+                          {{ alumno.errors }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endif %}
+                  
+                  <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                  <button type="submit" class="btn btn-primary" value="Guardar"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+              </div>
+            </div>
+         </div>
+     </form>
+  </div>
+</div>
+{% endblock %}

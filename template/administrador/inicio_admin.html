@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Bienvenidos <small>Inicio</small></h1>
+    </div>
+</div>
+<section class="full-reset text-center" style="padding: 40px 0;">
+    <article class="tile">
+        <div class="tile-icon full-reset"><i class="zmdi zmdi-face"></i></div>
+        <div class="tile-name all-tittles">Director</div>
+        <div class="tile-num full-reset">01</div>
+    </article>
+    <article class="tile">
+        <div class="tile-icon full-reset"><i class="zmdi zmdi-male-female"></i></div>
+        <div class="tile-name all-tittles" style="width: 90%;">Seretarias</div>
+        <div class="tile-num full-reset">04</div>
+    </article>
+</section>
+{% endblock %}

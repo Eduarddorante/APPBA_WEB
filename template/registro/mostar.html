@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
+{% load staticfiles %}
+{% block content %}
+
+         <div>
+            <h1>Lista De Alumnos</h1>
+          </div>
+          <div><a class="btn btn-primary btn-flat" href="/registromusica/"><i class="fa fa-lg fa-plus"></i></a>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th><td>{{ persona.nombre }}</td>
+                      <th>Apellido</th><td>{{ persona.apellido }}</td>
+                      <th>Fecha Nacimiento</th><td>{{ persona.fecha_nacimiento }}</td>
+                      <th>Sexo</th><td>{{ persona.sexo }}</td>
+                      <th>Direccion Habitacion</th>
+                      <th>Telefono</th>
+                      <th>Celular</th>
+                      <th>Nivel Instruccion</th>
+                      <th>Email</th>
+                      <th>Institucion Cursante</th>
+                      <th>Curso Realizar</th>
+                      <th>Cursa Otra Actividad</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                {% if object_list %}
+                {% for persona in object_list %}
+                <tr class="odd">
+                  <td>{{ persona.nombre }}</td>
+                  <td>{{ persona.apellido }}</td>
+                  <td>{{ persona.fecha_nacimiento }}</td>
+                  <td>{{ persona.sexo }}</td>
+                  <td>{{ persona.direccion_habitacion }}</td>
+                  <td>{{ persona.telefono }}</td>
+                  <td>{{ persona.celular }}</td>
+                  <td>{{ persona.nivel_instruccion }}</td>
+                  <td>{{ persona.email }}</td>
+                  <td>{{ persona.institucion_cursante }}</td>
+                  <td>{{ persona.curso_realizar }}</td>
+                  <td>{{ persona.cursa_otra_actividad }}</td>
+
+                  </tr>
+                {% endfor %}
+                {% else %}
+                  <td valign="top" colspan="12" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                {% endif %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Listado{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Listado De Alumnos</h1>
+    </div>
+</div>
+<div class="container-fluid"  style="margin: 50px 0;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <img src="{% static 'assets/img/user03.png' %}" alt="calendar" class="img-responsive center-box" style="max-width: 110px;">
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+            Bienvenido a esta sección, aquí se muestran todas los alumnos registrados.<br>
+                    <strong class="text-danger"><i class="zmdi zmdi-alert-triangle"></i> &nbsp; ¡Importante! </strong>Si eliminas los del alumno del sistema se borrarán todos los datos relacionados.
+          </div>
+        </div>
+          <br>
+          <hr>  
+</div>
+
+{% if request.user.is_director %}
+  <div class="row container-fluid">
+    <div class="col-sm-12">
+      <div class="div-table" style="margin:0 !important;">
+        <div class="card-body">
+          <div id="sampleTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                  <thead>
+                    <tr role="row">
+                      <th>Cedula</th>
+                      <th>Nombre Del Alumno</th>
+                      <th>Nombre Del Representante</th>
+                      <th>Celular</th>
+                      <th>Catedra</th>
+                      <th>Información</th>
+                      <th>Constancia</th>
+                    </tr>
+                  </thead>
+              
+                  <tbody>
+                  {% for alumno in object_list %}
+                    <tr class="odd">
+                        <td>{% if alumno.cedula_alumno == "" %} {{ alumno.cedula_representante }} Repre {% else %} {{ alumno.cedula_alumno }} {% endif %}</td>
+
+                        <td>{{ alumno.Nombre }} {{ alumno.Apellido }}</td>
+                        <td>{% if alumno.Nombre_Repre == "" and alumno.Apellid_Repre == "" %} No Posee Representante {% else %} {{ alumno.Nombre_Repre }} {{ alumno.Apellid_Repre }} {% endif %}</td>
+                        <td>{{ alumno.Celular }}</td>
+
+                        <td>{% if alumno.Danza == True %} Danza {% elif alumno.Musica == True %} Musica {% elif alumno.Teatro == True %} Teatro {% elif alumno.Artes_Plasticas == True %} Artes Plasticas {% endif %}</td>
+                        
+                        <td><a href="" class="btn btn-primary"><i class="zmdi zmdi-file-text"></i></a></td>
+                        
+                        <td><a href="{% url 'Reportes:alum_Reportes' alumno.pk %}" class="btn btn-success"><i class="zmdi zmdi-file-text"></i></a></td>
+
+                    </tr>
+                    {% empty %} 
+                    <td valign="top" colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                  {% endfor %}
+                  </tbody> 
+                </table>
+              </div>
+            </div>
+          </div>             
+        </div>
+      </div>
+    </div>
+  </div>
+{% elif request.user.is_secretaria_musica %}
+  <div class="row container-fluid">
+    <div class="col-sm-12">
+      <div class="div-table" style="margin:0 !important;">
+        <div class="card-body">
+          <div id="sampleTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                  <thead>
+                    <tr role="row">
+                      <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sexo</th>
+                      <th>Celular</th>
+                      <th>Información</th>
+                      <th>Actualizar</th>
+                      <th>Eliminar</th>
+                      <th>Reportes</th>
+                    </tr>
+                  </thead>
+              
+                  <tbody>
+                  {% for alumno in object_list %}
+                    {% if alumno.Musica == True %}
+                    <tr class="odd">
+                        <td>{{ alumno.cedula_alumno }}</td>
+                        <td>{{ alumno.Nombre }}</td>
+                        <td>{{ alumno.Apellido }}</td>
+                        <td>{{ alumno.Sexo }}</td>
+                        <td>{{ alumno.Celular }}</td>
+                        <td><a href="" class="btn btn-primary" ><i class="zmdi zmdi-file-text"></i></a></td>
+                        <td align="center"><a href="{% url 'registro:editar_alumno' alumno.ID %}" class="btn btn-success"><i class="zmdi zmdi-refresh"></a></td>
+                        <td align="center"><a href="{% url 'registro:eliminar_alumno' alumno.ID %}" class="btn btn-danger"><i class="zmdi zmdi-delete"></a></td>
+                        <td><a href="{% url 'Reportes:alum_Reportes' alumno.pk %}" class="btn btn-success"><i class="zmdi zmdi-file-text"></i></a></td>
+                    </tr>
+                    {% endif %} 
+                    {% empty %} 
+                    <td valign="top" colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                  {% endfor %}
+                  </tbody> 
+                </table>
+              </div>
+            </div>
+          </div>             
+        </div>
+      </div>
+    </div>
+  </div>
+{% elif request.user.is_secretaria_danza %}
+  <div class="row container-fluid">
+    <div class="col-sm-12">
+      <div class="div-table" style="margin:0 !important;">
+        <div class="card-body">
+          <div id="sampleTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                  <thead>
+                    <tr role="row">
+                      <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sexo</th>
+                      <th>Celular</th>
+                      <th>Información</th>
+                      <th>Actualizar</th>
+                      <th>Eliminar</th>
+                      <th>Reportes</th>
+                    </tr>
+                  </thead>
+              
+                  <tbody>
+                  {% for alumno in object_list %}
+                    {% if alumno.Danza == True %}
+                    <tr class="odd">
+                        <td>{{ alumno.cedula_alumno }}</td>
+                        <td>{{ alumno.Nombre }}</td>
+                        <td>{{ alumno.Apellido }}</td>
+                        <td>{{ alumno.Sexo }}</td>
+                        <td>{{ alumno.Celular }}</td>
+                        <td><a href="" class="btn btn-primary" ><i class="zmdi zmdi-file-text"></i></a></td>
+                        <td align="center"><a href="{% url 'registro:editar_alumno' alumno.ID %}" class="btn btn-success"><i class="zmdi zmdi-refresh"></a></td>
+                        <td align="center"><a href="{% url 'registro:eliminar_alumno' alumno.ID %}" class="btn btn-danger"><i class="zmdi zmdi-delete"></a></td>
+                        <td><a href="{% url 'Reportes:alum_Reportes' alumno.pk %}" class="btn btn-success"><i class="zmdi zmdi-file-text"></i></a></td>
+                    </tr>
+                    {% endif %} 
+                    {% empty %} 
+                    <td valign="top" colspan="8" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                  {% endfor %}
+                  </tbody> 
+                </table>
+              </div>
+            </div>
+          </div>             
+        </div>
+      </div>
+    </div>
+  </div>
+{% elif request.user.is_secretaria_teatro %}
+  <div class="container-fluid">
+      <div class="table-responsive">
+          <div class="div-table" style="margin:0 !important;">
+            <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+              <thead>
+                <tr role="row">
+                  <th>Cedula</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Sexo</th>
+                  <th>Celular</th>
+                  <th>Información</th>
+                  <th>Reportes</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              {% for alumno in object_list %}
+                {% if alumno.Teatro == True %}
+                <tr class="odd">
+                    <td>{{ alumno.cedula_alumno }}</td>
+                    <td>{{ alumno.Nombre }}</td>
+                    <td>{{ alumno.Apellido }}</td>
+                    <td>{{ alumno.Sexo }}</td>
+                    <td>{{ alumno.Celular }}</td>
+                    <td align="center"><a href="{% url 'registro:editar_alumno' alumno.ID %}" class="btn btn-success"><i class="zmdi zmdi-refresh"></a></td>
+                    <td align="center"><a href="{% url 'registro:eliminar_alumno' alumno.ID %}" class="btn btn-danger"><i class="zmdi zmdi-delete"></a></td>
+                    <td><a href="{% url 'Reportes:alum_Reportes' alumno.pk %}" class="btn btn-success"><i class="zmdi zmdi-file-text"></i></a></td>
+                </tr>
+                {% endif %} 
+                {% empty %} 
+                <td valign="top" colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+{% elif request.user.is_secretaria_artes %}
+  <div class="row container-fluid">
+    <div class="col-sm-12">
+      <div class="div-table" style="margin:0 !important;">
+        <div class="card-body">
+          <div id="sampleTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                  <thead>
+                    <tr role="row">
+                      <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sexo</th>
+                      <th>Celular</th>
+                      <th>Información</th>
+                      <th>Actualizar</th>
+                      <th>Eliminar</th>
+                      <th>Reportes</th>
+                    </tr>
+                  </thead>
+              
+                  <tbody>
+                  {% for alumno in object_list %}
+                    {% if alumno.Artes_Plasticas == True %}
+                    <tr class="odd">
+                        <td>{{ alumno.cedula_alumno }}</td>
+                        <td>{{ alumno.Nombre }}</td>
+                        <td>{{ alumno.Apellido }}</td>
+                        <td>{{ alumno.Sexo }}</td>
+                        <td>{{ alumno.Celular }}</td>
+                        <td><a href="" class="btn btn-primary" ><i class="zmdi zmdi-file-text"></i></a></td>
+                        <td align="center"><a href="{% url 'registro:editar_alumno' alumno.ID %}" class="btn btn-success"><i class="zmdi zmdi-refresh"></a></td>
+                        <td align="center"><a href="{% url 'registro:eliminar_alumno' alumno.ID %}" class="btn btn-danger"><i class="zmdi zmdi-delete"></a></td>
+                        <td><a href="{% url 'Reportes:alum_Reportes' alumno.pk %}" class="btn btn-success"><i class="zmdi zmdi-file-text"></i></a></td>
+                    </tr>
+                    {% endif %} 
+                    {% empty %} 
+                    <td valign="top" colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                  {% endfor %}
+                  </tbody> 
+                </table>
+              </div>
+            </div>
+          </div>             
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

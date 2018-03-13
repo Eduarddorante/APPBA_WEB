@@ -1,0 +1,105 @@
+{% extends 'base2.html' %}
+{% block title %}Acticvidades{% endblock title %}
+{% load staticfiles %}
+<title>Calendario</title>
+
+{% block content %}
+<br><br><br><br>
+<body>
+  <div id="calendar" class="card"></div>
+</body>
+{% endblock %}
+
+{% block javascript %}
+<script type='text/javascript' src="{% static 'js/fullcalendar.js' %}"></script>
+<script type='text/javascript' src="{% static 'js/locale-all.js' %}"></script>
+<script type='text/javascript' src="{% static 'js/jquery.qtip.min.js' %}"></script>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        var tooltip = $('<div/>').qtip({
+          id: 'calendar',
+          prerender: true,
+          content: {
+            text: ' ',
+          },
+          position: {
+            my: 'bottom center',
+            at: 'top center',
+            target: 'mouse',
+            viewport: $('#calendar'),
+            adjust: {
+              mouse: false,
+              scroll: false
+            }
+          },
+          show: false,
+          hide: false,
+          style: 'qtip-bootstrap'
+        }).qtip('api');
+
+        $('#calendar').fullCalendar({
+            locale: 'es',
+            eventLimit: true,
+            height: 720,
+            header: {
+              right: 'prev,next today',
+              center: 'title',
+              left: 'month,agendaWeek,agendaDay'
+            },
+
+            eventClick: function(data, event, view, start) {
+              var ini = start;
+              var date = new Date(ini);
+              var content = '<h3>'+data.title+'</h3>' + 
+                '<p><b>Inicia:</b> '+data.start.format("DD/MM/YYYY ") +'<br />' +  
+                (data.end && '<p><b>Culmina:</b> '+data.end.format("DD/MM/YYYY") +'</p>' + 
+                '<p><b>Descripcion:</b> '+data.description+'<br />' || '');
+
+              tooltip.set({
+                'content.text': content
+              })
+              .reposition(event).show(event);
+            },
+            dayClick: function() { tooltip.hide() },
+            eventResizeStart: function() { tooltip.hide() },
+            viewDisplay: function() { tooltip.hide() },
+            events: [
+                {% for i in Actividad %}
+                {
+                    title: "{{ i.nombr_acti }}",
+                    start: '{{ i.fecha_inic|date:"d M Y " }}',
+                    end: '{{ i.fecha_fina|date:"d M Y"}}',
+                    description: '{{ i.descripcio }}',            
+                },
+                {% endfor %}
+
+            ],
+        });
+
+    });
+</script>
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+</style>
+<br><br><br><br>
+
+{% endblock %}
+
+{% block css %} 
+
+  <link rel='stylesheet' type='text/css' href="{% static 'css/fullcalendar.css' %}" />
+  <link rel='stylesheet' type='text/css' href="{% static 'css/jquery.qtip.min.css' %}" />
+  <link rel='stylesheet' type='text/css' href="{% static 'css/custom.css' %}" />
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}Listado De Las Actividades{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Listado De Actividades</h1>
+    </div>
+</div>
+<div class="container-fluid"  style="margin: 50px 0;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <img src="{% static 'assets/img/category.png' %}" alt="calendar" class="img-responsive center-box" style="max-width: 110px;">
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+            Bienvenido a esta sección, aquí se muestran todas las actividades registradas.<br>
+                    <strong class="text-danger"><i class="zmdi zmdi-alert-triangle"></i> &nbsp; ¡Importante! </strong>Si eliminas la actividad del sistema se borrarán todos los datos relacionados.
+          </div>
+    </div>
+</div>
+  <div class="row container-fluid">
+    <div class="col-sm-12">
+      <div class="div-table" style="margin:0 !important;">
+        <div class="card-body">
+          <div id="sampleTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                  <thead>
+                    <tr role="row">
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha De Inicio</th>
+                    <th>Fecha Final</th>
+                    <th>Estado</th>
+                    {% if request.user.is_secretaria %}
+                      <th>Editar</th>
+                      <th>Eliminar</th>
+                    {% endif %}
+                    </tr>
+                  </thead>
+                  
+                <tbody>
+                {% if object_list %}
+                {% for actividad in object_list %}
+                <tr class="odd">
+                  <td>{{ actividad.nombr_acti }}</td>
+                  <td>{{ actividad.descripcio }}</td>
+                  <td>{% if actividad.fecha_inic == "" %} Sin Programar {% else %} {{ actividad.fecha_inic }}{% endif %}</td>
+                  <td>{% if actividad.fecha.fina == "" %} Sin Programar {% else %} {{ actividad.fecha_fina }}{% endif %}</td>
+                  <td>
+                    {% if actividad.status1 == True and actividad.status2 == False and actividad.status3 == False %}
+                    Activa<img src="/static/img/icon-yes.svg" > 
+                      
+                    {% elif actividad.status1 == True and actividad.status2 == True and actividad.status3 == False %} 
+                    Finalizada<img src="/static/img/icon-yes.svg" > 
+
+                    {% elif actividad.status1 == True and actividad.status2 == False and actividad.status3 == True %} 
+                    Pospuesta<img src="/static/img/icon-no.svg">
+                    
+                    {% elif actividad.status1 == True and actividad.status2 == True and actividad.status3 == True %}
+                    Pospuesta<img src="/static/img/icon-no.svg">
+                    
+                    {% elif actividad.status1 == False and actividad.status2 == True and actividad.status3 == True %} 
+                    Pospuesta<img src="/static/img/icon-no.svg"> 
+                    
+                    {% elif  actividad.status3 == True %}
+                    Pospuesta<img src="/static/img/icon-no.svg"> 
+                    
+                    {% elif actividad.status1 == False and actividad.status2 == False and actividad.status3 == False %} 
+                    Pospuesta<img src="/static/img/icon-no.svg"> 
+                  {% endif %}</td>
+                  {% if request.user.is_secretaria %}
+                    <td><a href="{% url 'actividad:editar_acti' actividad.id %}" class="btn btn-primary" >Ver Mas</a></td>
+                    <td><a href="{% url 'actividad:eliminar_acti' actividad.id %}" class="btn btn-danger" >Eliminar</a></td>
+                  {% endif %}
+                  </tr>
+                {% endfor %}
+                {% else %}
+                  <td valign="top" colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                {% endif %}  
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>             
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

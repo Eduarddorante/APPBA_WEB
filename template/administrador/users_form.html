@@ -1,0 +1,179 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Nuevo Profesor</title>
+
+  </head>
+  <body class="sidebar-mini fixed">
+<div class="wrapper">
+      <!-- Navbar-->
+      <header class="main-header hidden-print"><a class="logo" href="/bienvenido/">APPGECA</a>
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button--><a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>
+          <!-- Navbar Right Menu-->
+          <div class="navbar-custom-menu">
+            <ul class="top-nav">
+              <!-- User Menu-->
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
+                <ul class="dropdown-menu settings-menu">
+                  <li><a href="/login/"><i class="fa fa-sign-out fa-lg"></i> Salir</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Side-Nav-->
+      <aside class="main-sidebar hidden-print">
+        <section class="sidebar">
+          <div class="user-panel">
+            <div class="pull-left image"><img class="img-circle" src="{% static 'img/avatar-admin.png' %}" alt="User Image"></div>
+            <div class="pull-left info">
+              <p>Bienvenido {{user.first_name}}</p>
+              <p class="designation">Administrador</p>
+            </div>
+          </div>
+          <!-- Sidebar Menu-->
+          <ul class="sidebar-menu">
+            <li class="active"><a href="/bienvenido/"><i class="fa fa-dashboard"></i><span>Inicio</span></a></li>
+            <li class="treeview"><a href="#"><i class="fa fa-edit"></i><span>Registro</span><i class="fa fa-angle-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="/nuevo alumno/"><i class="fa fa-circle-o"></i> Registrar Alumno</a></li>
+                <li><a href="/nuevo profesor/"><i class="fa fa-circle-o"></i> Registrar Profesor</a></li>
+                <li><a href="/nuevo instrumento/"><i class="fa fa-circle-o"></i> Registrar Instrumento</a></li>
+                <li><a href="/nueva actividad/"><i class="fa fa-circle-o"></i> Registrar Actividad</a></li>
+              </ul>
+            </li>
+            <li class="treeview"><a href="#"><i class="fa fa-th-list"></i><span>Listado</span><i class="fa fa-angle-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="/listado de alumno/"><i class="fa fa-circle-o"></i> Listado De Alumnos</a></li>
+                <li><a href="/listado de profesor/"><i class="fa fa-circle-o"></i> Listado De Profesores</a></li>
+                <li><a href="/listado de instrumento/"><i class="fa fa-circle-o"></i>Listado De Instrumentos</a></li>
+                <li><a href="/listado de actividades/"><i class="fa fa-circle-o"></i>Listado De Actividades</a></li>
+              </ul>
+            </li>
+            <li class="treeview"><a href="#"><i class="fa fa-file-text"></i><span>Reportes</span><i class="fa fa-angle-right"></i></a>
+              <ul class="treeview-menu">
+               
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </aside>
+      <div class="content-wrapper">
+        <div class="page-title">
+          <div>
+            <h1><i class="fa fa-edit"></i> Nuevo Profesor</h1>
+            <p>Formulario Para El Registro De Un Nuevo Profesor</p>
+          </div>
+          <div>
+            <ul class="breadcrumb">
+              <li><i class="fa fa-home fa-lg"></i></li>
+              <li>Registro</li>
+              <li><a href="#">Profesor</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="well bs-component">
+                    <form class="form-horizontal" method="POST">{% csrf_token %}
+                    {{form.as_tb}}
+                        <fieldset>
+                        <legend>Registro</legend>
+                        
+                        <div class="title-flat-form"><h1>REGISTRA LA INSCRIPCION</h1></div>
+                              <div class="FormGroup">
+                                <label for="id_ci">Cédula:</label>
+                                <input autofocus="" id="id_ci" maxlength="8" name="ci" type="text" class="form-control" required="">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_username">Nombre de usuario:</label>
+                                <input id="id_username" maxlength="40" name="username" type="text" class="form-control">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_first_name">Nombre:</label>
+                                <input id="id_first_name" maxlength="40" name="first_name" class="form-control" type="text" required="">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_last_name">Apellidos:</label>
+                                <input id="id_last_name" maxlength="40" name="last_name" class="form-control" type="text" required="">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_is_administrador">Administrador:</label>
+                                <input type="checkbox" name="is_administrador" id="id_is_administrador" checked="checked">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_is_usuario">Usuario:</label>
+                                <input id="id_is_usuario" name="is_usuario" type="checkbox">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_is_staff">Staff Status:</label>
+                                <input id="id_is_staff" name="is_staff" type="checkbox">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_is_superuser">Superuser Status:</label>
+                                <input id="id_is_superuser" name="is_superuser" type="checkbox">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_password1">Contraseña:</label>
+                                <input id="id_password1" name="password1" type="password" class="form-control" required="">
+                                
+                              </div>
+                            
+                              <div class="FormGroup">
+                                <label for="id_password2">Contraseña (confirmación):</label>
+                                <input id="id_password2" name="password2" type="password" class="form-control" required="">
+                                
+                              </div>
+                                
+                                 <div class="FormGroup">
+                              <button class="btn btn-primary" type="submit" href="/nuevo profesor/" value="siguiente">Submit</button>
+
+                              
+                        
+                </div>
+              </fieldset></form></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Javascripts-->
+    <script src="{% static 'js/jquery-2.1.4.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/plugins/pace.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+  </body>
+</html>
