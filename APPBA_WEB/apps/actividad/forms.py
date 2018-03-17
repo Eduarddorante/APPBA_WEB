@@ -11,7 +11,7 @@ class ActivForm(forms.ModelForm):
 	class Meta:
 		model = Actividad
 
-		fields = ['nombr_acti', 'descripcio', 'fecha_inic', 'fecha_fina']
+		fields = ['nombr_acti', 'descripcio', 'fecha_inic', 'fecha_fina', 'estado']
 		labels = {
 		'nombr_acti': 'Nombre De La Actividad',
 		'descripcio': 'Descripcion',
@@ -19,9 +19,8 @@ class ActivForm(forms.ModelForm):
 		'hora_inic': 'Hora De Inicio',
 		'fecha_fina': 'Fecha De Culminacion',
 		'hora_final': 'Hora De Culminacion',
-		'status1':'status1',
-		'status2':'status2',
-		'status3':'status3',
+		'estado': 'Estado',
+
 		}
 		widgets = {
         'fecha_inic': DateInput(format='%b %d, %Y'),

@@ -3,7 +3,6 @@
 # Create your views here.
 from django.views.generic import View
 #________________________________________
-from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template import Context
@@ -21,25 +20,28 @@ from django.views.generic import TemplateView, FormView
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
 from django.db.models import Q
-from ...apps.actividad.models import *
-from ...apps.actividad.forms import *
-from ...apps.authentication.models import Users
-from ...apps.utils.mixins import AdminRequiredMixin
-from ...apps.utils.forms_date import DateInput
-from django.utils.decorators import method_decorator
+from django.shortcuts import render, render_to_response, get_object_or_404, redirect
+from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 import os
+from ...apps.utils.forms_date import DateInput
+from io import BytesIO
+from django.views.generic import View
+from ...apps.actividad.models import Actividad
+from ...apps.actividad.forms import *
+from ...apps.utils.mixins import AdminRequiredMixin,UsuarioRequiredMixin
+
+
 
 # Create your views here.
 ######################CREAR ACTIVIDAD######################
 class actiCreateView(LoginRequiredMixin,AdminRequiredMixin,CreateView):
 	model = Actividad
-	fields = ['nombr_acti', 'descripcio', 'fecha_inic', 'fecha_fina','status1']
+	fields = ['nombr_acti', 'descripcio', 'fecha_inic', 'hora_inico', 'hora_final' ,'fecha_fina','estado']
 	template_name = 'actividades/crear_actividad.html'
 	success_url = '/listado_de_actividades/'
-
-
 		
-			
 ######################LISTA DE ACTIVIDADES######################
 class activListView(LoginRequiredMixin,ListView):
 	context_object_name = 'listado_de_actividades'
@@ -47,15 +49,15 @@ class activListView(LoginRequiredMixin,ListView):
 	template_name = 'actividades/listar_actividad.html'
 
 class activUpdateView(LoginRequiredMixin,AdminRequiredMixin,UpdateView):
-	template_name = 'actividades/actualizar_actividad.html'
+	template_name = 'actividades/editar_actividad.html'
 	model = Actividad
-	fields = ['nombr_acti', 'descripcio', 'fecha_inic', 'fecha_fina', 'status1', 'status2','status3']
+	fields = ['nombr_acti', 'descripcio', 'fecha_inic', 'hora_inico', 'hora_final' ,'fecha_fina','estado']
 	success_url = '/listado_de_actividades/'
 	
 class activDeleteView(LoginRequiredMixin,AdminRequiredMixin, DeleteView):
 	
 	model = Actividad
-	template_name = 'delete/activ_confirm_delete.html'
+	template_name = 'actividades/activ_confirm_delete.html'
 	success_url = reverse_lazy('actividad:list_actividades')
 
 ######################CALENDARIO DE ACTIVIDADES######################
