@@ -29,10 +29,26 @@
         </div>
         <div class="full-reset" style="background-color:#2B3D51; padding: 10px 0; color:#fff;">
             <figure>
-                <img src="{% static 'assets/img/logo.png'%}" alt="Biblioteca" class="img-responsive center-box" style="width:55%;">
+                <img src="{% static 'assets/img/flat-book.png'%}" alt="Biblioteca" class="img-responsive center-box" style="width:55%;">
             </figure>
-            <p class="text-center" style="padding-top: 15px;">Administrador</p>
+            {% if request.user.is_director %}
+            <p class="text-center" style="padding-top: 15px;">Director</p>
+            {% endif %}
+            {% if request.user.is_secretaria_danza %}
+            <p class="text-center" style="padding-top: 15px;">Danza</p>
+            {% endif %}
+            {% if request.user.is_secretaria_teatro %}
+            <p class="text-center" style="padding-top: 15px;">Teatro</p>
+            {% endif %}
+            {% if request.user.is_secretaria_musica %}
+            <p class="text-center" style="padding-top: 15px;">Musica</p>
+            {% endif %}
+            {% if request.user.is_secretaria_artes %}
+            <p class="text-center" style="padding-top: 15px;">Artes Plasticas</p>
+            {% endif %}
+
         </div>
+
         <div class="full-reset nav-lateral-list-menu">
           <ul class="list-unstyled">
             <li><a href=/bienvenido/><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp; Inicio </a></li>
@@ -87,9 +103,7 @@
             </ul>
         </nav>
   <!--  wrapper -->
-                      
-{% block content %}
-{% endblock %}
+
 
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">
   <div class="modal-dialog modal-lg">
@@ -108,7 +122,11 @@
   </div>
 </div>
 
-<footer class="footer full-reset">
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer">
     <div class="container-fluid">
 
         <div class="row">
@@ -121,22 +139,23 @@
             <div class="col-xs-12 col-sm-6">
                 <h4 class="all-tittles">Desarrolladores</h4>
                 <ul class="list-unstyled">
-                    <li><i class="zmdi zmdi-check zmdi-hc-fw"></i>&nbsp; Desantiago Manuel <i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
-                    </i></li>
-                  <li><i class="zmdi zmdi-check zmdi-hc-fw"></i>&nbsp; Dorante Eduard<i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
-                </i></li>
-                <li><i class="zmdi zmdi-check zmdi-hc-fw"></i>&nbsp; Gomez Maryori <i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
-                    
+                    <li>
+                        <i class="zmdi zmdi-check zmdi-hc-fw"></i>&nbsp; Desantiago Manuel <i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
                     </li>
-
+                    <li>
+                    <i class="zmdi zmdi-check zmdi-hc-fw"></i>&nbsp; Dorante Eduard<i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
+                    </li>
+                    <li>
+                        <i class="zmdi zmdi-check zmdi-hc-fw"></i>&nbsp; Gomez Maryori <i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
     <div class="footer-copyright full-reset all-tittles">© 2017-2018 UPTP </div>
+    </div>
 </footer>
 <!-- listado -->
-<script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'plugins/jquery-1.10.2.js' %}"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
